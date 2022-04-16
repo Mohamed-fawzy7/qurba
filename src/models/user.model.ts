@@ -1,8 +1,13 @@
 import mongoose, { Document } from 'mongoose';
 
-export interface IUser extends Document {
+export interface UserInput {
   name: string;
   favoriteCuisines: string[];
+}
+
+export interface IUser extends UserInput, Document {
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -18,6 +23,6 @@ const UserSchema = new mongoose.Schema({
   ],
 });
 
-const User = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
-export default User;
+export default UserModel;
