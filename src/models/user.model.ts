@@ -10,18 +10,25 @@ export interface IUser extends UserInput, Document {
   updatedAt: Date;
 }
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  favoriteCuisines: [
-    {
+export interface UserFilters {
+  _id: string;
+}
+
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
       type: String,
-      lowercase: true,
+      required: true,
     },
-  ],
-});
+    favoriteCuisines: [
+      {
+        type: String,
+        lowercase: true,
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 const UserModel = mongoose.model('User', UserSchema);
 
